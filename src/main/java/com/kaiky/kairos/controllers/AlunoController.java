@@ -1,9 +1,5 @@
-package com.kaiky.kairos.Controllers;
+package com.kaiky.kairos.controllers;
 
-import java.time.LocalDateTime;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,19 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kaiky.kairos.Request.AlunoRequest;
 
-
 @RestController
-@RequestMapping("/home")
-public class HomeController {
+@RequestMapping("/aluno")
+public class AlunoController {
 	
-
-	@GetMapping("date-time")
-	public LocalDateTime getCurrentLocalDateTime()
-	{
-		return LocalDateTime.now();
-	}
-	
-	@PostMapping("aluno/media")
+	@PostMapping("media")
 	public String getMedia(@RequestBody(required = true) AlunoRequest request){
 		var media = (request.getNota1() + request.getNota2()) / 2;
 		if(media < 5)
@@ -34,5 +22,5 @@ public class HomeController {
 		
 		return "Parabéns "+request.getName()+", você foi aprovado.";
 	}
-		
+	
 }
